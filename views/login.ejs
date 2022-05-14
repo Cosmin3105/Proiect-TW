@@ -1,0 +1,21 @@
+<html>
+<head>
+    <link rel="stylesheet" href="login_style.css">
+</head>
+<body>
+    <% if (messages.error) { %>
+        <%= messages.error %>
+    <% } %>
+    <form action="/login" method="post">
+        <h2>Login</h2>
+        <div class="input-field">
+            <input type="text" name="name" id="name" placeholder="Enter Username">
+        </div>
+        <div class="input-field">
+            <input type="password" name="password" id="password" placeholder="Enter Password">
+        </div>
+        <input type="submit" value="LogIn">
+    </form>
+    <a href="/register">Register</a>
+</body>
+</html>
