@@ -18,6 +18,7 @@ const port = 3000;
 
 const users = [];
 
+app.use(express.static(__dirname + '/views'));
 app.set('view-engine', 'ejs');
 app.use(express.urlencoded({ extended: false }));
 app.use(flash())

@@ -6,22 +6,58 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Agentie de Turism</title>
 	<link rel="stylesheet" type="text/css" href="style.css" >
+	<script src="script.js"></script>
 </head>
 <body>
 	<nav>
-		<ul>
-			<li><a href="">Acasă</a></li>
-			<li><a href="">Vacanțe</a></li>
-			<li><a href="">Contact</a></li>
-		</ul>
+		<a href="">Acasă</a>
+		<a href="">Obiective turistice</a>
+		<a href="">Locații</a>
+		<a href="">Contact</a>
+
+		<div class="dropdown">
+		  <button class="dropbtn">Cont</button>
+		  <div class="dropdown-content">
+			<a href="/register">Register</a>
+			<a href="/login">Login</a>
+			<a>
+				<form action="logout?_method=DELETE" method="POST">
+					<button type="submit">Log Out</button>
+				</form>
+			</a>
+			
+		  </div>
+		</div>
 	</nav>
 	
-	<a href="/register">register</a>
-	<a href="/login">login</a>
-
-	<form action="logout?_method=DELETE" method="POST">
-		<button type="submit">Log Out</button>
-	</form>
+	<main>
+		<section class="slideshow">
+			<div class="slide fade">
+				<div class="number">1 / 3</div>
+				<img src="images/castelul-peles.jpg" alt="Castelul Peles" width="100%">
+				<div class="text">Castlul Peleș</div>
+			</div>
+			<div class="slide fade">
+				<div class="number">2 / 3</div>
+				<img src="images/transfagarasan.jpg" alt="Transfagarasan" width="100%">
+				<div class="text">Transfăgărășan</div>
+			</div>	
+			<div class="slide fade">
+				<div class="number">3 / 3</div>
+				<img src="images/delta-dunarii.jpg" alt="Delta Dunarii" width="100%">
+				<div class="text">Delta Dunării</div>
+			</div>	
+			
+			<a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+ 			<a class="next" onclick="plusSlides(1)">&#10095;</a>
+		</section>
+		<br>
+		<div style="text-align:center">
+			<span class="dot" onclick="currentSlide(1)"></span>
+			<span class="dot" onclick="currentSlide(2)"></span>
+			<span class="dot" onclick="currentSlide(3)"></span>
+		</div>
+	</main>
 
 </body>
 </html>
