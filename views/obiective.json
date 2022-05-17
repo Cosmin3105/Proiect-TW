@@ -1,0 +1,38 @@
+[
+	{
+		"nume": "Transalpina",
+		"tara": "Romania",
+		"locatie": "judetele Gorj, Alba",
+		"descriere": "Este unul dintre cele mai frumoase locuri din România deoarece Transalpina reprezintă cel mai înalt drum rutier din România, dar și din întregul lanț al Munților Carpați.",
+		"imagine": "images/transalpina.jpg"
+	},
+	{
+		"nume": "Transfăgărășan ",
+		"tara": "Romania",
+		"locatie": "judetul Arges",
+		"descriere": "Unul dintre cele mai frumoase obiective turistice deoarece traseul Transfăgărășan îți pune la dispoziție pentru vizitat și lacul glaciar Bâlea, cascada Bâlea, lacul Vidraru și barajul Vidraru, dar și multe alte puncte turistice.",
+		"imagine": "images/transfagarasan.jpg"
+	},
+	{
+		"nume": "Cascada Bigăr",
+		"tara": "Romania",
+		"locatie": "Parcul Național Cheile Nerei-Beușnița, județul Caraș Severin",
+		"descriere": "Cascada Bigar este unul dintre cele mai frumoase obiective turistice din județul Caraș Severin, din Parcul Național Cheile Nerei-Beușnița. În urma unui clasament făcut în 2013 de The World Geography, cascada Bigăr a obținut primul loc pentru cea mai frumoasă cascadă unică din lume.",
+		"imagine": "images/cascada-bigar.jpg"
+	},
+	{
+		"nume": "Castelul Peleș",
+		"tara": "Romania",
+		"locatie": "Sinaia",
+		"descriere": "Obiectiv turistic des vizitat deoarece oamenii își doresc să vadă castelul care a fost construit ca reședință de vară a regilor României. Aici se regăsește și Muzeul Național Peleș.",
+		"imagine": "images/castelul-peles.jpg"
+	},
+	{
+		"nume": "Cetatea Râșnov",
+		"tara": "Romania",
+		"locatie": "Râșnov",
+		"descriere": "Situată la 30 de km de Brașov, cetatea Râșnov este o destinație turistică intens vizitată datorită stilului arhitectonic. Aici se regăsește și un muzeu de artă feudal unde se pot vedea de aproape arme, mobilier de epocă, dar și porturi specifice secolului.",
+		"imagine": "images/cetatea-rasnov.jpg"
+	}
+]
+

@@ -8,6 +8,8 @@ body {
 nav {
 	overflow: hidden;
 	background-color: #333;
+	margin-bottom: 0;
+	padding: 0;
 }
   
 nav a {
@@ -79,12 +81,11 @@ nav a {
 
 /* galeria de la inceput */
 
-* {box-sizing:border-box}
-
 .slideshow {
-	max-width: 1000px;
+	max-width: 100%;
 	position: relative;
 	margin: auto;
+	margin-top: 0;
 }
 
 .slide {
@@ -156,4 +157,8 @@ nav a {
 @keyframes fade {
 	from {opacity: .4}
 	to {opacity: 1}
+}
+
+#obbut {
+	height: 200px;
 }
