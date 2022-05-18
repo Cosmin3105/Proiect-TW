@@ -52,17 +52,23 @@ app.get('/register', checkNotAutenticated, (req, res) => {
 app.post('/register', checkNotAutenticated, async (req, res) => {
 	try {
 		const hashedPassword = await bcrypt.hash(req.body.password, 10);
-		users.push({
-			id: Date.now().toString(),
-			name: req.body.name,
-			email: req.body.email,
-			password: hashedPassword
-		});
-		res.redirect('/login');
+		if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(req.body.email)) {
+			users.push({
+				id: Date.now().toString(),
+				name: req.body.name,
+				email: req.body.email,		
+				password: hashedPassword
+			});
+			res.redirect('/login');
+		}
+		else {
+			alert("Email invalid!");
+			res.redirect('/register');
+		}
+		
 	} catch {
 		res.redirect('/register');
 	}
-	// console.log(users);
 });
 
 app.delete('/logout', (req, res) => {

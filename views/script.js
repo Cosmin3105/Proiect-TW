@@ -101,6 +101,7 @@ async function shwoObiective() {
 				div.appendChild(img);
 				div.appendChild(p);
 				div.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+				document.getElementById('listaLoc').appendChild(div);
 				sect.appendChild(div);
 				div.scrollIntoView({
 					behavior: 'smooth'
@@ -147,8 +148,9 @@ async function handleClick(event) {
 		div.appendChild(judet);
 		div.appendChild(populatie);
 		div.appendChild(a);
-		const loc = document.getElementById("ap");
-		loc.appendChild(div);
+		document.getElementById('listaLoc').appendChild(div);
+		// const loc = document.getElementById("ap");
+		// loc.appendChild(div);
 		a.addEventListener('click', (event) => {
 			event.stopPropagation();
 		})
@@ -165,6 +167,7 @@ async function handleClick(event) {
 		button.style.visibility = 'visible';
 		button.onclick = (event) => {
 			event.stopPropagation();
+			document.getElementById('listaLoc').innerHTML = "";
 			const locFav = localitati[localStorage.getItem('locSalvata')];
 			console.log(locFav);
 			if (locFav == null)
@@ -192,8 +195,8 @@ async function handleClick(event) {
 				a.addEventListener('click', (event) => {
 					event.stopPropagation();
 				});
-				
-				loc.appendChild(div);
+				document.getElementById('listaLoc').appendChild(div);
+				// loc.appendChild(div);
 			}
 		}
 	}
