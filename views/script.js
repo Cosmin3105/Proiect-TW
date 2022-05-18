@@ -34,6 +34,8 @@ window.onload = init;
 function init() {
 	showSlides(slideIndex);	
 	shwoObiective();
+	const button = document.getElementById('buttonfv');
+	button.style.visibility = 'hidden';
 	randomLocation()
 }
 
@@ -51,10 +53,11 @@ async function shwoObiective() {
 			if (i >= obiective.length)
 				return;
 			const div = document.createElement("div");
+			div.id = "obvDiv";
 			const h2 = document.createElement("h2");
 			h2.innerHTML = obiective[i].nume;
 			const h4_1 = document.createElement("h4");
-			h4_1.innerHTML = 	 "Țara: " + obiective[i].tara;
+			h4_1.innerHTML = "Țara: " + obiective[i].tara;
 			const h4_2 = document.createElement("h4");
 			h4_2.innerHTML = "Locație: " + obiective[i].locatie;
 			const p = document.createElement('p');
@@ -62,12 +65,14 @@ async function shwoObiective() {
 			const img = document.createElement('img');
 			img.src = obiective[i].imagine;
 			img.alt = "Imaginea nu a fost gasita";
-			img.height = 500;
+			img.height = 200;
 			div.appendChild(h2);
 			div.appendChild(h4_1);
 			div.appendChild(h4_2);
 			div.appendChild(img);
 			div.appendChild(p);
+			const colors = ['#18434e', '#d8ddea', '#a1bdd0', '#78949f'];
+			div.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
 			sect.appendChild(div);
 			div.scrollIntoView({
 				behavior: 'smooth'
@@ -77,6 +82,7 @@ async function shwoObiective() {
 				if (i >= obiective.length)
 					return;
 				const div = document.createElement("div");
+				div.id = "obvDiv";
 				const h2 = document.createElement("h2");
 				h2.innerHTML = obiective[i].nume;
 				const h4_1 = document.createElement("h4");
@@ -88,12 +94,13 @@ async function shwoObiective() {
 				const img = document.createElement('img');
 				img.src = obiective[i].imagine;
 				img.alt = "Imaginea nu a fost gasita";
-				img.height = 500;
+				img.height = 200;
 				div.appendChild(h2);
 				div.appendChild(h4_1);
 				div.appendChild(h4_2);
 				div.appendChild(img);
 				div.appendChild(p);
+				div.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
 				sect.appendChild(div);
 				div.scrollIntoView({
 					behavior: 'smooth'
@@ -114,59 +121,79 @@ function randomLocation() {
 	loc.addEventListener('click', handleClick);
 	
 }
-
+let butonExista = false;
 async function handleClick(event) {
 	try {
 		const result = await fetch("https://raw.githubusercontent.com/catalin87/baza-de-date-localitati-romania/master/date/localitati.json");
 		const localitati = await result.json();
 
 		const randLoc = localitati[Math.floor(Math.random()* localitati.length)];
-		// console.log(randLoc.nume);
-		// console.log(`https://www.google.com/maps/place/${randLoc.lat},${randLoc.lng}`);
-
 		
 		const div = document.createElement('div');
 		const a = document.createElement('a');
 		a.href = `https://www.google.com/maps/place/${randLoc.lat},${randLoc.lng}`;
-		div.id = randLoc.id - 1;
-		div.innerHTML = randLoc.nume;
 		a.innerHTML = "Vezi localiatea pe Google Maps";
 		a.target = "_blank";
+		
+		const nume = document.createElement('h2');
+		nume.id = randLoc.id - 1;
+		nume.innerHTML = randLoc.nume;
+		const judet = document.createElement('p');
+		judet.innerHTML = `Județul: ${randLoc.judet}`;
+		const populatie = document.createElement('p');
+		populatie.innerHTML = `Populație: ${randLoc.populatie}`;
+		
+		div.appendChild(nume);
+		div.appendChild(judet);
+		div.appendChild(populatie);
 		div.appendChild(a);
 		const loc = document.getElementById("ap");
 		loc.appendChild(div);
 		a.addEventListener('click', (event) => {
 			event.stopPropagation();
 		})
-		div.addEventListener('click', (event) => {
+		nume.addEventListener('click', (event) => {
 			event.stopPropagation();
 			let locSalvata =  event.target.id;
 			localStorage.setItem('locSalvata', locSalvata);
 			//console.log(locSalvata);
 		});
 		
-		const button = document.createElement('button');
-		button.innerHTML = "Vezi localitatea favoritas";
-		const section = document.getElementById('localitati');
-		section.appendChild(button);
-		button.onclick = () => {
+		document.getElementById('apasaNume').innerHTML = "Apasă pe numele unei localități pentru a o salva ca localitate favorită";
+
+		const button = document.getElementById('buttonfv');
+		button.style.visibility = 'visible';
+		button.onclick = (event) => {
+			event.stopPropagation();
 			const locFav = localitati[localStorage.getItem('locSalvata')];
 			console.log(locFav);
 			if (locFav == null)
 				alert("Nu ati ales o localitate favorita");
 			else {
+				// if (document.getElementById('locFavDiv')) 
+				// 	document.getElementById('locFavDiv').remove();
 				const div = document.createElement('div');
+				div.id = 'locFavDiv';
 				const a = document.createElement('a');
 				a.href = `https://www.google.com/maps/place/${locFav.lat},${locFav.lng}`;
-				div.innerHTML = locFav.nume;
 				a.innerHTML = "Vezi localiatea pe Google Maps";
 				a.target = "_blank";
+				const nume = document.createElement('h2')
+				nume.innerHTML = locFav.nume;
+				const judet = document.createElement('p');
+				judet.innerHTML = `Județul: ${locFav.judet}`;
+				const populatie = document.createElement('p');
+				populatie.innerHTML = `Populație: ${locFav.populatie}`;
+
+				div.appendChild(nume);
+				div.appendChild(judet);
+				div.appendChild(populatie);
 				div.appendChild(a);
 				a.addEventListener('click', (event) => {
 					event.stopPropagation();
 				});
-				const sectiune = document.getElementById('localitati');
-				sectiune.appendChild(div);
+				
+				loc.appendChild(div);
 			}
 		}
 	}

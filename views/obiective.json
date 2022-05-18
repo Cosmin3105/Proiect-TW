@@ -21,11 +21,11 @@
 		"imagine": "images/cascada-bigar.jpg"
 	},
 	{
-		"nume": "Castelul Peleș",
+		"nume": "Cazanele Dunării",
 		"tara": "Romania",
-		"locatie": "Sinaia",
-		"descriere": "Obiectiv turistic des vizitat deoarece oamenii își doresc să vadă castelul care a fost construit ca reședință de vară a regilor României. Aici se regăsește și Muzeul Național Peleș.",
-		"imagine": "images/castelul-peles.jpg"
+		"locatie": "Drobeta Turnu Severin",
+		"descriere": "Cazanele Dunării sunt unul dintre cele mai frumoase locuri din România datorită chipului lui Decebal sculptat în stâncă. Aici poți face plimbări pe Dunăre sau drumeții în Parcul Național Porțile de Fier.",
+		"imagine": "images/cazanele-dunarii.jpg"
 	},
 	{
 		"nume": "Cetatea Râșnov",
