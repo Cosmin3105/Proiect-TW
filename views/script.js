@@ -33,10 +33,11 @@ window.onload = init;
 
 function init() {
 	showSlides(slideIndex);	
-	shwoRandom();
+	shwoObiective();
+	randomLocation()
 }
 
-async function shwoRandom() {
+async function shwoObiective() {
 	const sect = document.getElementById("obiective");
 	try {
 		const result = await fetch("obiective.json");
@@ -107,3 +108,69 @@ async function shwoRandom() {
 	}
 }	
 
+
+function randomLocation() {
+	const loc = document.getElementById("ap");
+	loc.addEventListener('click', handleClick);
+	
+}
+
+async function handleClick(event) {
+	try {
+		const result = await fetch("https://raw.githubusercontent.com/catalin87/baza-de-date-localitati-romania/master/date/localitati.json");
+		const localitati = await result.json();
+
+		const randLoc = localitati[Math.floor(Math.random()* localitati.length)];
+		// console.log(randLoc.nume);
+		// console.log(`https://www.google.com/maps/place/${randLoc.lat},${randLoc.lng}`);
+
+		
+		const div = document.createElement('div');
+		const a = document.createElement('a');
+		a.href = `https://www.google.com/maps/place/${randLoc.lat},${randLoc.lng}`;
+		div.id = randLoc.id - 1;
+		div.innerHTML = randLoc.nume;
+		a.innerHTML = "Vezi localiatea pe Google Maps";
+		a.target = "_blank";
+		div.appendChild(a);
+		const loc = document.getElementById("ap");
+		loc.appendChild(div);
+		a.addEventListener('click', (event) => {
+			event.stopPropagation();
+		})
+		div.addEventListener('click', (event) => {
+			event.stopPropagation();
+			let locSalvata =  event.target.id;
+			localStorage.setItem('locSalvata', locSalvata);
+			//console.log(locSalvata);
+		});
+		
+		const button = document.createElement('button');
+		button.innerHTML = "Vezi localitatea favoritas";
+		const section = document.getElementById('localitati');
+		section.appendChild(button);
+		button.onclick = () => {
+			const locFav = localitati[localStorage.getItem('locSalvata')];
+			console.log(locFav);
+			if (locFav == null)
+				alert("Nu ati ales o localitate favorita");
+			else {
+				const div = document.createElement('div');
+				const a = document.createElement('a');
+				a.href = `https://www.google.com/maps/place/${locFav.lat},${locFav.lng}`;
+				div.innerHTML = locFav.nume;
+				a.innerHTML = "Vezi localiatea pe Google Maps";
+				a.target = "_blank";
+				div.appendChild(a);
+				a.addEventListener('click', (event) => {
+					event.stopPropagation();
+				});
+				const sectiune = document.getElementById('localitati');
+				sectiune.appendChild(div);
+			}
+		}
+	}
+	catch (error) {
+		console.log(error)
+	}
+}
